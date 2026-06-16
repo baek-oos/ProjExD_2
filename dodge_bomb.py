@@ -28,8 +28,14 @@ def check_bound(rct: pg.Rect):
     return yoko, tate
 
 def get_kk_imgs() -> dict[tuple[int, int], pg.Surface]:
-    kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"),0,0.9)
-    kk_dict = {
+     """
+    移動方向に対応するこうかとん画像辞書を生成する
+    Returns:
+        dict[tuple[int, int], pg.Surface]:
+            移動方向と画像の対応辞書
+    """
+     kk_img = pg.transform.rotozoom(pg.image.load("fig/3.png"),0,0.9)
+     kk_dict = {
         ( 0, 0): kk_img,  # キー押下がない場合
         (+5, 0): pg.transform.flip(kk_img, True, False),  # 右
         (+5, -5): pg.transform.rotozoom(kk_img, -45, 1),   # 右上
@@ -39,8 +45,8 @@ def get_kk_imgs() -> dict[tuple[int, int], pg.Surface]:
         (-5, +5): pg.transform.rotozoom(kk_img, 135, 1),  # 左下
         (0, +5): pg.transform.rotozoom(kk_img, 90, 1),   # 下
         (+5, +5): pg.transform.rotozoom(kk_img, 45, 1),  # 右下
-    }
-    return kk_dict
+     }
+     return kk_dict
 
 def gameover(screen: pg.Surface) -> None:
     # 黒い半透明のSurface
